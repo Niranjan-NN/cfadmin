@@ -85,7 +85,7 @@ const getProductMeta = async (req, res) => {
       return res.status(400).json({ success: false, error: "Invalid Product ID" });
     }
 
-    const meta = await ProductMeta.find({ product: productId }).populate("product", "title");
+    const meta = await ProductMeta.find({ product: productId }).populate("product", "title").sort({createdAt:-1});
     res.status(200).json({ success: true, meta });
   } catch (err) {
     console.error("Error in getProductMeta:", err);

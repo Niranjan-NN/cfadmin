@@ -33,7 +33,7 @@ const addQuestion = async (req, res) => {
 // GET /api/review/:productId
 const getReviews = async (req, res) => {
   try {
-    const reviews = await Review.find({ productId: req.params.productId }).populate("userId", "name");
+    const reviews = await Review.find({ productId: req.params.productId }).populate("userId", "name").sort({createdAt:-1});;
     res.json({ success: true, reviews });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -43,7 +43,7 @@ const getReviews = async (req, res) => {
 // GET /api/question/:productId
 const getQuestions = async (req, res) => {
   try {
-    const questions = await Question.find({ productId: req.params.productId }).populate("userId", "name");
+    const questions = await Question.find({ productId: req.params.productId }).populate("userId", "name").sort({createdAt:-1});;
     res.json({ success: true, questions });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
